@@ -7,10 +7,10 @@ const MovieDetails = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    if (id === undefined) {
+    if (!id) {
       return;
     }
-    console.log(id);
+
     findMovieId(id)
       .then(movie => {
         setMovies(movie);
