@@ -10,10 +10,11 @@ const MovieDetails = () => {
   useEffect(() => {
     findMovieId(id)
       .then(({ results }) => {
-        console.log(results);
+        setMovies(results);
       })
       .catch(error => console.log(error));
   }, [id]);
+  return <div>{movies && console.log(movies)}</div>;
 };
 
 export default MovieDetails;
