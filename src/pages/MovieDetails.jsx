@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { findMovieId } from '../components/Services/fetch-movie';
+import MoviesInfo from 'components/MoviesInfo';
+import AdditionalInfo from 'components/AdditionalInfo ';
 
 const MovieDetails = () => {
-  const [movies, setMovies] = useState([]);
+  const [movie, setMovie] = useState(null);
   const { id } = useParams();
 
   useEffect(() => {
@@ -12,30 +14,17 @@ const MovieDetails = () => {
     }
 
     findMovieId(id)
-      .then(movie => {
-        setMovies(movie);
+      .then(movieEl => {
+        setMovie(movieEl);
       })
       .catch(error => console.log(error));
   }, [id]);
-  console.log(movies);
-  const movieGenres = movies.genres.map(gene => gene.name);
 
   return (
-    <div>
-      <img
-        src={`https://image.tmdb.org/t/p/original/${movies.poster_path}`}
-        alt={movies.title}
-        width="300"
-      />
-      <h1>
-        {movies.title}({movies.release_date.slice(0, 4)})
-      </h1>
-      <p>User Score: {movies.popularity}%</p>
-      <h2>Overview</h2>
-      <p>{movies.overview}</p>
-      <h2>Genres</h2>
-      <p>{movieGenres}</p>
-    </div>
+    <>
+      {movie && <MoviesInfo movie={movie} />}
+      <AdditionalInfo />
+    </>
   );
 };
 
