@@ -26,7 +26,7 @@ export function findMovieId(id) {
 //------- Пошук по ід склад акторів----
 export function findActorsId(id) {
   return fetch(
-    `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${key}&language=en-US`
+    `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${key}&language=en-US&page=1`
   ).then(respons => respons.json());
 }
 
