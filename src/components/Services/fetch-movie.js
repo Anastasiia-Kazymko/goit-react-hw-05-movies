@@ -10,9 +10,9 @@ export function popularFilm() {
 
 //------- Пошук за ключовим словом----
 
-export function findWordKey(word, page = 1) {
+export function findMovie(word) {
   return fetch(
-    `https://api.themoviedb.org/3/search/movie?api_key=${key}&language=en-US&page=1&include_adult=false&query=${word}&page=${page}`
+    `https://api.themoviedb.org/3/search/movie?api_key=${key}&language=en-US&page=1&include_adult=false&query=${word}&page=1`
   ).then(respons => respons.json());
 }
 
