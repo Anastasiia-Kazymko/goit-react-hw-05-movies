@@ -13,10 +13,20 @@ const Reviews = () => {
     }
 
     findReviewsId(id)
-      .then(rez => setReviews(rez.results))
+      .then(rez => {
+        setReviews(rez.results);
+      })
       .catch(error => console.log(error));
   }, [id]);
-  return <div>{reviews && <ReviewsList reviews={reviews} />}</div>;
+  return (
+    <div>
+      {reviews ? (
+        <ReviewsList reviews={reviews} />
+      ) : (
+        <div> We don't have any reviews for this movie</div>
+      )}
+    </div>
+  );
 };
 
 export default Reviews;
