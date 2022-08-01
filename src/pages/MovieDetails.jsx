@@ -27,7 +27,7 @@ const MovieDetails = () => {
     <>
       <Link to={backLink}>Go back</Link>
       {movie && <MoviesInfo movie={movie} />}
-      <AdditionalInfo />
+      <AdditionalInfo location={backLink} />
     </>
   );
 };
