@@ -41,7 +41,7 @@ const Movies = () => {
   return (
     <>
       <SearchBox
-        value={searchName}
+        value={value}
         onSubmit={handleSubmit}
         onChange={updateQueryString}
       />
