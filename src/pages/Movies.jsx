@@ -6,28 +6,27 @@ import MoviesList from 'components/MoviesList';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
-  const [value, setvalue] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const searchName = searchParams.get('query') ?? '';
+  const [value, setValue] = useState(searchName);
 
   const updateQueryString = query => {
-    setSearchParams(query !== '' ? { query } : {});
+    setValue(query);
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    setvalue(e.target.elements[0].value);
     if (value === '') {
       return alert('Please fill in the field!');
     }
-    setSearchParams({ query: searchName.toLowerCase().trim() });
+    setSearchParams({ query: value });
   };
 
   useEffect(() => {
-    if (!value) {
+    if (!searchName) {
       return;
     }
-    findMovie(value)
+    findMovie(searchName)
       .then(({ results }) => {
         setMovies(results);
         if (results.length === 0) {
@@ -37,7 +36,7 @@ const Movies = () => {
         }
       })
       .catch(error => console.log(error));
-  }, [value]);
+  }, [searchName]);
 
   return (
     <>
